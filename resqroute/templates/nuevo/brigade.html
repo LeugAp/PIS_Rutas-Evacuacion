@@ -1,0 +1,34 @@
+{% extends 'nuevo/base.html' %}
+
+{% block content %}
+
+<div class="container-fluid h-25 text-white d-flex flex-column justify-content-center align-items-center">
+    <h1 class="mb-4">Brigades</h1>
+</div>
+
+<div class="h-100 bg-light text-dark text-center p-4">
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for brigade in brigades %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h2 class="card-title">{{ brigade.name }}</h2>
+              <ul class="list-group">
+                {% for function in functions_brigades %}
+                {% if function.brigade == brigade %}
+                <li class="list-group-item">{{ function.function }}</li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

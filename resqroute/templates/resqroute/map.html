@@ -1,0 +1,10 @@
+{% extends 'resqroute/template.html' %}
+
+{% block content %}
+  <h1>Maps</h1>
+
+  {% for m in maps %}
+    <h2>{{ m.name }}</h2>
+    <p>{{ m.img }}</p>
+  {% endfor %}
+{% endblock %}

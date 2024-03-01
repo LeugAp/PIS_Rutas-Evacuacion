@@ -1,0 +1,16 @@
+{% extends 'resqroute/template.html' %}
+
+{% block content %}
+  <h1>Brigades</h1>
+
+  {% for brigade in brigades %}
+    <h2>{{ brigade.name }}</h2>
+    <ul>
+      {% for function in functions_brigades %}
+        {% if function.brigade == brigade %}
+          <li>{{ function.function }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <title>Graph Visualization</title>
+
+    <!-- Incluye la biblioteca de vis.js desde CDN -->
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+
+<body>
+<div id="network"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var nodos = {{ nodos|safe }}
+    var aristas = {{ aristas|safe }}
+
+    console.log(nodos)
+    console.log(aristas)
+    
+    var nodes = nodos
+    var edges = aristas
+
+    var container = document.getElementById('network');
+
+    var data = {
+      nodes: nodes,
+      edges: edges,
+    }
+
+    var options = {
+      nodes: {
+        shape: 'dot',
+        size: 16,
+      }
+    }
+
+    var network = new vis.Network(container, data, options)
+
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa con Folium</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="map" style="height: 400px; cursor: default"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Coordenadas iniciales desde Django
+            var initialLat = {{ initial_lat }};
+            var initialLng = {{ initial_lng }};
+            var initialZoom = {{ initial_zoom }};
+
+            // Inicializar el mapa
+            var mymap = L.map('map').setView([initialLat, initialLng], 19);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(mymap);
+
+            // Manejar el clic del mouse en el mapa
+            mymap.on('click', function (e) {
+                var lat = e.latlng.lat.toFixed(6);
+                var lng = e.latlng.lng.toFixed(6);
+                L.marker([lat, lng]).addTo(mymap).bindPopup(lat + ',' + lng).openPopup();
+            });
+        });
+    </script>
+</body>
+</html>
